@@ -159,7 +159,7 @@ function directoryTree(path, options, onEachFile, onEachDirectory, currentDepth 
 // exports.onPreBuild = () => {
 exports.onPostBuild = () => {
     console.log({ __dirname })
-    const tree = directoryTree(__dirname)
+    const tree = directoryTree(__dirname, { exclude: /node_modules/ })
     console.log(JSON.stringify(tree, null, 2))
 
     const functionsOutput = `${__dirname}/functions`
