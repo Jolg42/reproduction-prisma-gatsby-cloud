@@ -159,8 +159,10 @@ function directoryTree(path, options, onEachFile, onEachDirectory, currentDepth 
 // exports.onPreBuild = () => {
 exports.onPostBuild = () => {
     console.log({ __dirname })
-    const tree = directoryTree(__dirname, { exclude: /node_modules/ })
-    console.log(JSON.stringify(tree, null, 2))
+    // const tree = directoryTree(__dirname, { exclude: /node_modules/ })
+    // console.log(JSON.stringify(tree, null, 2))
+    console.log("FS.readdirSync(__dirname)", FS.readdirSync(__dirname))
+    console.log("FS.readdirSync('/')", FS.readdirSync('/'))
 
     const functionsOutput = `${__dirname}/functions`
     console.log({ functionsOutput })
