@@ -160,7 +160,7 @@ function directoryTree(path, options, onEachFile, onEachDirectory, currentDepth 
 exports.onPostBuild = () => {
     console.log({ __dirname })
     const tree = directoryTree(__dirname)
-    // console.log(JSON.stringify(tree, null, 2))
+    console.log(JSON.stringify(tree, null, 2))
 
     const functionsOutput = `${__dirname}/functions`
     console.log({ functionsOutput })
