@@ -3,7 +3,7 @@ const PATH = require('path');
 
 export default async function handler(req, res) {
   console.log({ __dirname });
-  console.log("path.dirname(__filename)", path.dirname(__filename));
+  console.log("PATH.dirname(__filename)", PATH.dirname(__filename));
 
   console.log("FS.readdirSync(__dirname)", FS.readdirSync(__dirname))
   console.log("FS.readdirSync('/')", FS.readdirSync('/'))
