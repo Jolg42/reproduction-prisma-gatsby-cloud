@@ -1,14 +1,21 @@
 const { PrismaClient } = require('@prisma/client');
 const requestIp = require('request-ip');
 const geoip = require('fast-geoip');
+const fs = require('fs')
+const path = require('path')
+
+
 
 export default async function handler(req, res) {
+  const schema = fs.readFileSync(path.resolve(__dirname, 'prisma/schema.prisma'), 'utf8')
+  console.log({ schema })
+
   const { date } = JSON.parse(req.body);
 
   const prisma = new PrismaClient({
     datasources: {
       db: {
-        url: process.env.DATABASE_URL
+        url: "postgresql://paul:VfvEWgJPpECemk0PFC7LhA@free-tier7.aws-eu-west-1.cockroachlabs.cloud:26257/defaultdb?sslmode=verify-full&options=--cluster%3Dmellow-stork-3081"
       }
     }
   });
