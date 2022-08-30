@@ -156,8 +156,27 @@ function directoryTree(path, options, onEachFile, onEachDirectory, currentDepth 
     return item;
 }
 
+function buildPrefixer(prefix, ...paths) {
+    return (...subpaths) => path.join(prefix, ...paths, ...subpaths)
+}
+
+const functionsFolder = buildPrefixer(
+    // program.directory,
+    `.cache`,
+    `functions`
+)
+
 // exports.onPreBuild = () => {
-exports.onPostBuild = () => {
+/** @type {import("gatsby").GatsbyNode["onPostBuild"]} */
+exports.onPostBuild = async ({ store, pathPrefix, reporter }) => {
+    console.log({ store })
+    console.log({ pathPrefix })
+    // console.log({ reporter })
+    const { functions = [], program } = store.getState()
+    console.log({ functions })
+    console.log({ program })
+    console.log("program.directory", program.directory)
+
     console.log({ __dirname })
     // const tree = directoryTree(__dirname, { exclude: /node_modules/ })
     // console.log(JSON.stringify(tree, null, 2))
@@ -170,9 +189,10 @@ exports.onPostBuild = () => {
     const srcLocation = PATH.join(__dirname, `./prisma/schema.prisma`)
     console.log({ srcLocation })
     // const outputLocation = PATH.join(functionsOutput, `./prisma/`)
-    const outputLocation = PATH.join(`.cache/functions`, `./prisma/`)
-
+    // const outputLocation = PATH.join(`.cache/functions`, `./prisma/`)
+    const outputLocation = PATH.join(program.directory, `.cache/functions/prisma/`)
     console.log({ outputLocation })
+
     if (!FS.existsSync(functionsOutput)) {
         console.log("functionsOutput")
         FS.mkdirSync(functionsOutput)
