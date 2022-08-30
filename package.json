@@ -29,6 +29,7 @@
   "homepage": "https://github.com/PaulieScanlon/reproduction-prisma-gatsby-cloud#readme",
   "dependencies": {
     "@prisma/client": "^4.2.1",
+    "copy-webpack-plugin": "^11.0.0",
     "fast-geoip": "^1.1.88",
     "gatsby": "^4.21.1",
     "prisma": "^4.2.1",
